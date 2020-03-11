@@ -28,26 +28,33 @@ public class CalculatorTest {
 	
 	@Test
 	public void testSubtractFunction() {
-		EasyMock.expect(testFunction.addFunction(5, 2)).andReturn(3);
+		EasyMock.expect(testFunction.subtractFunction(5, 2)).andReturn(3);
 		EasyMock.replay(testFunction);
-		assertEquals(3, testCalc.getCalcService().addFunction(5, 2));
-		EasyMock.verify(testFunction); //Verifies that the service was actually used to pass expected value
+		assertEquals(3, testCalc.getCalcService().subtractFunction(5, 2));
+		EasyMock.verify(testFunction); 
 	}
 	
 	@Test
 	public void testMultiplyFunction() {
-		EasyMock.expect(testFunction.addFunction(5, 2)).andReturn(10);
+		EasyMock.expect(testFunction.multiplyFunction(5, 2)).andReturn(10);
 		EasyMock.replay(testFunction);
-		assertEquals(10, testCalc.getCalcService().addFunction(5, 2));
-		EasyMock.verify(testFunction); //Verifies that the service was actually used to pass expected value
+		assertEquals(10, testCalc.getCalcService().multiplyFunction(5, 2));
+		EasyMock.verify(testFunction); 
 	}
 	
 	@Test
 	public void testDivideFunction() {
-		EasyMock.expect(testFunction.addFunction(5, 2)).andReturn(2);
+		EasyMock.expect(testFunction.divideFunction(5, 2)).andReturn(2);
 		EasyMock.replay(testFunction);
-		assertEquals(2, testCalc.getCalcService().addFunction(5, 2));
-		EasyMock.verify(testFunction); //Verifies that the service was actually used to pass expected value
+		assertEquals(2, testCalc.getCalcService().divideFunction(5, 2));
+		EasyMock.verify(testFunction); 
 	}
-
+	
+	@Test(expected = Exception.class)
+	public void testDivideByZeroException() {
+		EasyMock.expect(testFunction.divideFunction(5, 0)).andThrow(new ArithmeticException("Cannot divide by zero"));
+		EasyMock.replay(testFunction);
+		
+		
+	}
 }
